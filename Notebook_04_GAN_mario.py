@@ -19,7 +19,7 @@ height, width = 120, 128
 if not os.path.exists('mario.npy'):
     images = np.zeros((tail - head, height, width))
     for i in range(head, tail):
-        img = cv2.imread(f'mario/{i}.png', cv2.IMREAD_GRAYSCALE)
+        img = cv2.imread(f'images/{i}.png', cv2.IMREAD_GRAYSCALE)
         images[i - head] = img
 
     np.save('mario.npy', images.astype(np.float32))
@@ -52,6 +52,9 @@ def generator():
 
 
 a_generator = generator()
+try:
+    a_generator.load_weights(tf.train.latest_checkpoint('mario_checkpoints'))
+except: pass
 noise = tf.random.normal([1, 100])
 generated_image = a_generator(noise, training=False)
 # plt.imshow(generated_image[0, :, :, 0], cmap='gray')
@@ -78,6 +81,9 @@ def discriminator():
 
 
 a_discriminator = discriminator()
+try:
+    a_discriminator.load_weights(tf.train.latest_checkpoint('mario_checkpoints'))
+except: pass
 # print(a_discriminator(generated_image, training=False))
 # print(a_discriminator(train_images[: 1].reshape(1, height, width, 1)))
 
@@ -151,6 +157,8 @@ def generate_and_save_images(model, epoch, test_input):
 
     plt.savefig('image_at_epoch_{:04d}.png'.format(epoch))
 
+    os.system('git config --global user.name "poorya"')
+    os.system('git config --global user.email "kafura.kafiri@gmail.com"')
     os.system('git add *')
     os.system('git commit -m "new_checkpoint"')
     os.system('git push "https://kafura-kafiri:Po00orya@github.com/kafura-kafiri/elmo_checkpoints.git" --all')
