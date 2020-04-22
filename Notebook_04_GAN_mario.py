@@ -9,7 +9,7 @@ import cv2
 from IPython import display
 
 if not os.path.exists('images'):
-    os.system('7z x ubuntu.7z.001')
+    os.system('7z x mario.7z.001')
     os.mkdir('images')
     os.system('ffmpeg -i mario.mp4 -vf fps=10 -s 128x120 images/%d.png')
 
@@ -166,9 +166,8 @@ def train(dataset, epochs):
                                  epoch + 1,
                                  seed)
 
-        # Save the model every 15 epochs
+        # Save the model
         checkpoint.save(file_prefix=checkpoint_prefix)
-
 
         print('Time for epoch {} is {} sec'.format(epoch + 1, time.time()-start))
 
