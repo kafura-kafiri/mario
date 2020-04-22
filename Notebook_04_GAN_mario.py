@@ -150,6 +150,10 @@ def generate_and_save_images(model, epoch, test_input):
       plt.axis('off')
 
     plt.savefig('image_at_epoch_{:04d}.png'.format(epoch))
+
+    os.system('git add *')
+    os.system('git commit -m "new_checkpoint"')
+    os.system('git push "https://kafura-kafiri:Po00orya@github.com/kafura-kafiri/elmo_checkpoints.git" --all')
     # plt.show()
 
 
