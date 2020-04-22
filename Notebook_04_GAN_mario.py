@@ -161,7 +161,7 @@ def generate_and_save_images(model, epoch, test_input):
     os.system('git config --global user.email "kafura.kafiri@gmail.com"')
     os.system('git add *')
     os.system('git commit -m "new_checkpoint"')
-    os.system('git push "https://kafura-kafiri:Po00orya@github.com/kafura-kafiri/elmo_checkpoints.git" --all')
+    os.system('git push "https://kafura-kafiri:Po00orya@github.com/kafura-kafiri/mario.git" --all')
     # plt.show()
 
 
